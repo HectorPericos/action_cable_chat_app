@@ -1,0 +1,19 @@
+version: '3'
+services:
+  cable:
+    build: .
+    command: bundle exec rails s -p 3002 -b '0.0.0.0'
+    volumes:
+      - .:/app
+    ports:
+      - "3002:3002"
+    networks:
+      cable_net:
+        ipv4_address: 170.24.0.3
+networks:
+   cable_net:
+      driver: bridge
+      ipam:
+         driver: default
+         config:
+            - subnet: 170.24.0.0/24
